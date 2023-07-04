@@ -47,14 +47,17 @@ def print_tasks(tasks):
     else:
         print("Current tasks:")
         for index, task in enumerate(tasks, start=1):
-            print(f"Task {index}:")
-            print_task_details(task)
-            print()
+            try:
+                print(f"Task {index}:")
+                print_task_details(task)
+                print()
+            except Exception as e:
+                print(f"Error occurred while printing Task {index}: {e}")
 
 if __name__ == '__main__':
     print_hi('PyCharm')
     tasks = []  # Initialize an empty list to store tasks
-    task = create_task("Coding", "Learn Cloud Computing0", "7/3")
+    task = create_task("Coding", "Learn Cloud Computing", "7/3")
     tasks.append(task)  # Add the created task to the list
     print_tasks(tasks)
     task_index = int(input("Enter the index of the task you want to update: "))
