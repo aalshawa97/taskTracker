@@ -1,5 +1,5 @@
 #Abdullah Mutaz ALshawa
-#7/6/23
+#7/7/23
 #Task tracker
 from tkinter import *
 from tkinter import ttk
@@ -74,20 +74,34 @@ if __name__ == '__main__':
     update_task(tasks, task_index)
     print_tasks(tasks)
     root = Tk()
+    # Configure the grid to make it responsive
+    root.grid_columnconfigure(0, weight=1)
+    root.grid_rowconfigure(0, weight=1)
+
+    # Create your widgets
+    #create_widgets()
+    root.configure(bg='#0000FF')  # Set the background color to blue
+    # set window color
     frm = ttk.Frame(root, padding=10)
     frm.grid()
+
     print_tasks(tasks)
+    # ...
 
     for index, task in enumerate(tasks, start=1):
         try:
             print(f"Task {index}:")
             print_task_details(task)
-            ttk.Label(frm, text=task.title).grid(column=0, row=index)
-            ttk.Label.pack(padx=200, pady=20)
-            myentry = ttk.Entry(root)
-            #   myentry.pack()
+            ttk.Label(frm, text=task.title).pack(padx=200, pady=20)  # Use pack() for labels
+            myentry = ttk.Entry(frm)
+            myentry.pack()
         except Exception as e:
             print(f"Error occurred while printing Task {index}: {e}")
-    ttk.Button(frm, text="Quit", command=root.destroy).grid(column=1, row=0)
+
+    ttk.Button(frm, text="Quit", command=root.destroy).pack(pady=10)  # Use pack() for the Quit button
+
+    # ...
+
+    #ttk.Button(frm, text="Quit", command=root.destroy).grid(column=1, row=0)
     root.mainloop()
     #root.mainloop(tasks)
